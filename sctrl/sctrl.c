@@ -22,12 +22,12 @@ int main( int argc, char **argv) {
   initscr();
   cbreak();
 
-  printf("starting... hit any character to tap solenoid\r\n" ); 
+  printw("starting... hit any character to tap solenoid\nhit return to exit\n" ); 
 
   do {
     input = getch();
-
-    printf("read char: %c\n\n", (char)input); 
+    printw("read char: %c\n", (char)input); 
+    refresh();
 #if RASPI
     digitalWrite( SOLENOID_GPIO, 1 );
 #endif 
@@ -38,5 +38,6 @@ int main( int argc, char **argv) {
 
   } while ( (input != EOF) && (input != '\n') );
 
-  printf("exiting\r\n"); 
+  printw("exiting\n"); 
+  endwin(); 
 }
