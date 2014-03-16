@@ -16,7 +16,7 @@ int main( int argc, char **argv) {
 #if RASPI
   wiringPiSetupGpio(); 
   pinMode( SOLENOID_GPIO, OUTPUT );
-  digitalWrite( SOLENOID_GPIO, 0 ); 
+  digitalWrite( SOLENOID_GPIO, 1 ); 
 #endif /* RASPI */
 
   initscr();
@@ -26,7 +26,8 @@ int main( int argc, char **argv) {
 
   do {
     input = getch();
-    printw("read char: %c\n", (char)input); 
+    //printw("read char: %c\n", (char)input); 
+    printw("*", (char)input); 
     refresh();
 #if RASPI
     digitalWrite( SOLENOID_GPIO, 0 );
