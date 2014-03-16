@@ -8,7 +8,7 @@
 #endif /* RASPI */
 
 #define SOLENOID_GPIO (4)
-#define SOLENOID_TAP_USEC ( 500 * 1000 )
+#define SOLENOID_TAP_USEC ( 100 * 1000 )
 
 int main( int argc, char **argv) {
   int input = 0; 
@@ -29,11 +29,11 @@ int main( int argc, char **argv) {
     printw("read char: %c\n", (char)input); 
     refresh();
 #if RASPI
-    digitalWrite( SOLENOID_GPIO, 1 );
+    digitalWrite( SOLENOID_GPIO, 0 );
 #endif 
     usleep(SOLENOID_TAP_USEC); 
 #if RASPI
-    digitalWrite( SOLENOID_GPIO, 0 ); 
+    digitalWrite( SOLENOID_GPIO, 1 ); 
 #endif 
 
   } while ( (input != EOF) && (input != '\n') );
